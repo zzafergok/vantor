@@ -1,0 +1,242 @@
+'use client';
+
+import * as React from 'react';
+
+import { cva, type VariantProps } from 'class-variance-authority';
+
+import { cn } from '@/lib/utils';
+
+const spinnerVariants = cva('', {
+  variants: {
+    size: {
+      xs: 'h-3 w-3',
+      sm: 'h-4 w-4',
+      md: 'h-6 w-6',
+      lg: 'h-8 w-8',
+      xl: 'h-12 w-12',
+      '2xl': 'h-16 w-16',
+    },
+    variant: {
+      default: 'text-arcly-blue',
+      secondary: 'text-ash',
+      white: 'text-white',
+      accent: 'text-arcly-blue',
+    },
+  },
+  defaultVariants: {
+    size: 'md',
+    variant: 'default',
+  },
+});
+
+export interface LoadingSpinnerProps
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof spinnerVariants> {
+  text?: string;
+  centered?: boolean;
+}
+
+const LoadingSpinner = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
+  ({ className, size, variant, text, centered = false, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        'inline-flex items-center gap-3',
+        {
+          'w-full justify-center': centered,
+        },
+        className,
+      )}
+      {...props}
+    >
+      <div className={cn('relative', spinnerVariants({ size, variant }))}>
+        <div className="absolute inset-0 animate-spin rounded-full bg-gradient-to-r from-current via-transparent to-current opacity-20" />
+        <div className="absolute inset-0 rounded-full">
+          <div
+            className="h-full w-full animate-spin rounded-full border-2 border-transparent bg-gradient-to-r from-current to-transparent"
+            style={{
+              mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+              maskComposite: 'xor',
+            }}
+          />
+        </div>
+        <svg
+          className="relative animate-spin"
+          style={{
+            animationDuration: '1.5s',
+            animationTimingFunction: 'cubic-bezier(0.4, 0, 0.6, 1)',
+          }}
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="31.416"
+            strokeDashoffset="31.416"
+            className="opacity-25"
+          />
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="31.416"
+            strokeDashoffset="23.562"
+            className="opacity-75"
+            style={{
+              filter: 'drop-shadow(0 0 6px currentColor)',
+            }}
+          />
+        </svg>
+      </div>
+      {text && (
+        <span className="animate-pulse text-sm text-ash/70">{text}</span>
+      )}
+    </div>
+  ),
+);
+LoadingSpinner.displayName = 'LoadingSpinner';
+
+// Modern bouncing dots animation
+const LoadingDots = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
+  ({ className, size = 'md', variant = 'default', text, ...props }, ref) => {
+    const dotSizeMap = {
+      xs: 'h-1 w-1',
+      sm: 'h-1.5 w-1.5',
+      md: 'h-2 w-2',
+      lg: 'h-2.5 w-2.5',
+      xl: 'h-3 w-3',
+      '2xl': 'h-4 w-4',
+    };
+
+    const colorMap = {
+      default: 'bg-arcly-blue',
+      secondary: 'bg-gunmetal',
+      white: 'bg-white shadow-lg',
+      accent: 'bg-arcly-blue',
+    };
+
+    const safeSize = size || 'md';
+    const safeVariant = variant || 'default';
+
+    return (
+      <div
+        ref={ref}
+        className={cn('inline-flex items-center gap-3', className)}
+        {...props}
+      >
+        <div className="flex space-x-1.5">
+          {[0, 1, 2].map((index) => (
+            <div
+              key={index}
+              className={cn(
+                'transform-gpu rounded-full',
+                dotSizeMap[safeSize],
+                colorMap[safeVariant],
+              )}
+              style={{
+                animation: `modernBounce 1.4s ease-in-out ${index * 0.2}s infinite`,
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
+              }}
+            />
+          ))}
+        </div>
+        {text && <span className="text-sm text-ash/70">{text}</span>}
+      </div>
+    );
+  },
+);
+LoadingDots.displayName = 'LoadingDots';
+
+// Modern pulse with neumorphism effect
+const LoadingPulse = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
+  ({ className, size = 'md', variant = 'default', text, ...props }, ref) => {
+    const pulseSizeMap = {
+      xs: 'h-6 w-6',
+      sm: 'h-8 w-8',
+      md: 'h-12 w-12',
+      lg: 'h-16 w-16',
+      xl: 'h-20 w-20',
+      '2xl': 'h-24 w-24',
+    };
+
+    const pulseColorMap = {
+      default:
+        'bg-gradient-to-br from-arcly-blue/40 via-arcly-blue/60 to-arcly-blue/80',
+      secondary:
+        'bg-gradient-to-br from-gunmetal/40 via-gunmetal/60 to-gunmetal/80',
+      white: 'bg-gradient-to-br from-white via-titanium/80 to-titanium',
+      accent:
+        'bg-gradient-to-br from-arcly-blue/40 via-arcly-blue/60 to-arcly-blue/80',
+    };
+
+    const safeSize = size || 'md';
+    const safeVariant = variant || 'default';
+
+    return (
+      <div
+        ref={ref}
+        className={cn('inline-flex items-center gap-3', className)}
+        {...props}
+      >
+        <div className="relative">
+          <div
+            className={cn(
+              'absolute inset-0 rounded-full opacity-30 blur-sm',
+              pulseSizeMap[safeSize],
+              pulseColorMap[safeVariant],
+            )}
+            style={{
+              animation: 'modernPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            }}
+          />
+          {/* Main pulse */}
+          <div
+            className={cn(
+              'relative rounded-full shadow-lg',
+              pulseSizeMap[safeSize],
+              pulseColorMap[safeVariant],
+            )}
+            style={{
+              animation: 'modernPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              animationDelay: '0.3s',
+              boxShadow:
+                'inset 2px 2px 4px rgba(255,255,255,0.3), inset -2px -2px 4px rgba(0,0,0,0.1)',
+            }}
+          />
+          {/* Inner highlight */}
+          <div
+            className={cn(
+              'absolute left-1/4 top-1/4 rounded-full bg-white opacity-40',
+              {
+                'h-1.5 w-1.5': safeSize === 'xs',
+                'h-2 w-2': safeSize === 'sm',
+                'h-3 w-3': safeSize === 'md',
+                'h-4 w-4': safeSize === 'lg',
+                'h-5 w-5': safeSize === 'xl',
+                'h-6 w-6': safeSize === '2xl',
+              },
+            )}
+            style={{
+              animation: 'modernPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              animationDelay: '0.1s',
+            }}
+          />
+        </div>
+        {text && <span className="text-sm text-ash/70">{text}</span>}
+      </div>
+    );
+  },
+);
+
+LoadingPulse.displayName = 'LoadingPulse';
+
+export { LoadingSpinner, LoadingDots, LoadingPulse };
