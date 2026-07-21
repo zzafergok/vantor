@@ -3,14 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Vantor is a premium domain-neutral Next.js application template.",
+  "description": "Vantor is a premium, domain-neutral Next.js 16 enterprise application foundation featuring React 19, Zustand, TanStack React Query, API Interceptors, HTTP Security Headers, and Radix UI Brutalist design system.",
+  "author": "Vantor Team",
+  "license": "MIT",
+  "keywords": [
+    "nextjs",
+    "react19",
+    "typescript",
+    "tailwind",
+    "zustand",
+    "tanstack-react-query",
+    "radix-ui",
+    "brutalist-design",
+    "enterprise-template"
+  ],
+  "engines": {
+    "node": ">=18.18.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "metadata:check": "node scripts/check-route-metadata.mjs",
     "type-check": "tsc --noEmit",
-    "lint": "next lint"
+    "metadata:check": "node scripts/check-route-metadata.mjs",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

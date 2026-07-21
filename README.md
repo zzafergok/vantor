@@ -1,294 +1,236 @@
 # Vantor
 
-## English
+Vantor; Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, Zustand, TanStack React Query ve Radix UI üzerine inşa edilmiş, enterprise seviyede **domain-independent (sektörden bağımsız)** modern bir web uygulaması altyapısı ve şablonudur.
 
-Vantor is a domain-neutral Next.js application foundation built for public
-pages, authenticated product areas, and admin screens. It provides the
-application shell, theme, routing structure, metadata layer, form foundation,
-and reusable interface pieces that are usually rebuilt at the start of every
-product, so teams can move faster into the actual business logic.
-
-The project is not tied to a specific industry or business model. It can be
-used as a clean starting point for CRM systems, SaaS dashboards, operations
-tools, customer portals, internal admin panels, MVPs, and enterprise web
-applications.
-
-### What It Provides
-
-- Public, authenticated, and admin route groups on the Next.js App Router
-- A premium, restrained interface system with a dark-theme-first direction
-- Reusable `components/core` UI primitives
-- Form components compatible with React Hook Form and Zod
-- Core interface elements such as toast, dialog, dropdown, tabs, table, badge,
-  card, switch, and date picker
-- Built-in Turkish and English i18n structure
-- Cookie-based access checks for user and admin areas
-- Separate layouts and shells for public, authenticated, and admin surfaces
-- Page metadata, sitemap, robots, manifest, and `llms.txt` foundations
-- Domain-neutral placeholder screens and sample data areas
-
-### Default Surfaces
-
-Vantor recognizes three main surfaces by default:
-
-- **Public area**: Open screens such as the landing page and login page.
-- **Authenticated area**: Protected application screens such as dashboard,
-  workspace, and settings for signed-in users.
-- **Admin area**: Management screens such as admin login, overview, users, and
-  settings.
-
-This separation keeps marketing/public pages, the user-facing product, and the
-internal management panel clearly isolated while the product grows.
-
-### What You Can Build With It
-
-Vantor can be used as a fast foundation for:
-
-- **SaaS applications**: Subscription-based products with sign-in, dashboard,
-  settings, and admin management.
-- **CRM systems or customer portals**: Products with customer, company, offer,
-  support ticket, or tracking screens.
-- **Operations panels**: Internal tools for tasks, workflows, inventory, teams,
-  requests, or approval flows.
-- **Admin dashboards**: Management panels for users, roles, system status, and
-  core metrics.
-- **MVP prototypes**: Product ideas that need a professional shell before the
-  domain is fully finalized.
-- **Enterprise application foundations**: Multi-screen web applications that
-  can be expanded around departments or business processes.
-
-### What Is Intentionally Not Included
-
-Vantor is a template, so it leaves product-specific business logic to you. The
-following concerns are intentionally not included:
-
-- Firebase or any other authentication provider integration
-- Real user, role, and permission data models
-- Domain-specific API routes
-- Ready-made workflows for AI, kanban, project management, waitlists, or account
-  products
-- Product-specific stores, services, and data layers
-- Monitoring, analytics, or production authentication policies
-
-This keeps the project easier to adapt across different domains.
-
-### Tech Stack
-
-- Next.js 16
-- React 19
-- TypeScript
-- Tailwind CSS
-- Radix UI primitives
-- Lucide React icons
-- React Hook Form
-- Zod
-- Framer Motion
-- `next-themes`
-
-### Project Structure
-
-```text
-src/app
-  (public)        Public pages
-  (auth)          Protected user application area
-  (admin)         Admin login and admin shell
-
-src/features/routes
-  public          Public screen modules
-  auth            User screen modules
-  admin           Admin screen modules
-
-src/components/core
-  Core UI components
-
-src/components/forms
-  Form foundation and field components
-
-src/lib
-  Metadata, locale, auth session, and helper functions
-```
-
-### Installation
-
-```bash
-npm install
-npm run dev
-```
-
-The application runs at `http://localhost:3000` by default.
-
-### Available Commands
-
-```bash
-npm run dev             # Development server
-npm run build           # Production build
-npm run start           # Production server
-npm run type-check      # TypeScript check
-npm run metadata:check  # Route metadata check
-```
-
-### Where to Start Development
-
-1. Update the relevant public, authenticated, or admin screen under
-   `src/features/routes` for your product.
-2. Use the `src/components/core` primitives to build new screens consistently.
-3. Add the real authentication provider, data source, and API routes for your
-   domain.
-4. Update site and page metadata in `src/lib/metadata/site-metadata.ts` for your
-   brand.
-5. Adapt Turkish and English copy from `src/features/routes/**/i18n` to your
-   product language.
-
-### License
-
-This repository is prepared as a private application template. Usage and
-distribution terms should be clarified according to the license policy defined
-by the project owner.
+Public sayfalar (Landing, Login), korumalı kullanıcı alanları (Dashboard, Workspace, Settings) ve yönetim panelleri (Admin Login, Overview, Users, Settings) için hazır uygulama kabukları (Shells), güvenlik katmanı, API interceptor mimarisi, form altyapısı ve durum yönetimi sunar.
 
 ---
 
-## Türkçe
+## 📚 İçindekiler / Table of Contents
 
-Vantor, public sayfalar, kullanıcıya özel uygulama alanları ve admin ekranları
-için hazırlanmış, domain bağımsız bir Next.js uygulama temelidir. Her ürünün
-başında tekrar tekrar kurulan uygulama kabuğunu, tema yapısını, route düzenini,
-metadata katmanını, form temelini ve yeniden kullanılabilir arayüz parçalarını
-hazır getirir; böylece ekipler asıl iş mantığına daha hızlı geçebilir.
+- [Vantor](#vantor)
+  - [📚 İçindekiler / Table of Contents](#-i̇çindekiler--table-of-contents)
+  - [🚀 Öne Çıkan Özellikler ve Mimari](#-öne-çıkan-özellikler-ve-mimari)
+  - [🛠️ Teknoloji Yığını (Tech Stack)](#️-teknoloji-yığını-tech-stack)
+  - [📁 Proje Dizin Yapısı (Project Structure)](#-proje-dizin-yapısı-project-structure)
+  - [🎓 Eğitici Mimari Rehber (Educational Guide)](#-eğitici-mimari-rehber-educational-guide)
+    - [1. API Client ve Interceptor Kullanımı](#1-api-client-ve-interceptor-kullanımı)
+    - [2. Servis ve Önbellekleme Katmanı (`CACHE_STRATEGIES`)](#2-servis-ve-önbellekleme-katmanı-cache_strategies)
+    - [3. Zustand ve React Query Auth Hook'ları](#3-zustand-ve-react-query-auth-hookları)
+    - [4. Güvenlik ve Session Yapılandırması](#4-güvenlik-ve-session-yapılandırması)
+  - [⚡ Kurulum ve Komutlar](#-kurulum-ve-komutlar)
+    - [1. Kurulum](#1-kurulum)
+    - [2. Kullanılabilir Komutlar](#2-kullanılabilir-komutlar)
+  - [📄 Lisans](#-lisans)
 
-Bu proje belirli bir sektöre veya iş modeline bağlı değildir. CRM sistemleri,
-SaaS panelleri, operasyon araçları, müşteri portalları, internal admin
-panelleri, MVP'ler ve kurumsal web uygulamaları için temiz bir başlangıç
-noktası olarak kullanılabilir.
+---
 
-### Neler Sunar?
+## 🚀 Öne Çıkan Özellikler ve Mimari
 
-- Next.js App Router üzerinde public, auth ve admin route grupları
-- Karanlık tema öncelikli, premium ve sade bir arayüz sistemi
-- Tekrar kullanılabilir `components/core` UI bileşenleri
-- React Hook Form ve Zod ile uyumlu form bileşenleri
-- Toast, dialog, dropdown, tabs, table, badge, card, switch ve date picker gibi
-  temel arayüz parçaları
-- Türkçe ve İngilizce için hazır i18n yapısı
-- Kullanıcı ve admin alanları için cookie tabanlı erişim kontrolleri
-- Public, kullanıcı ve admin yüzeyleri için ayrı layout ve kabuk yapıları
-- Sayfa metadata, sitemap, robots, manifest ve `llms.txt` temeli
-- Domain bağımsız placeholder ekranlar ve örnek veri alanları
+- **Next.js 16 App Router & Native Proxy Middleware**:
+  - `src/proxy.ts` üzerinden sıkılaşmış rota koruması (Route Guard).
+  - Üretim seviyesinde **HTTP Security Headers** (`X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Permissions-Policy`, `X-XSS-Protection`).
+- **Güvenlik ve Oturum Katmanı**:
+  - `httpOnly`, `secure`, `sameSite: 'lax'` parametrelerine sahip HTTP Çerezleri ([session.ts](file:///Users/zafergok/Documents/github/ZAFER/vantor/src/lib/auth/session.ts)).
+  - JWT imzalama ve doğrulama modülü ([jwt.ts](file:///Users/zafergok/Documents/github/ZAFER/vantor/src/lib/auth/jwt.ts)).
+  - Next.js API Route Handler'ları (`/api/auth/login`, `/api/auth/logout`, `/api/auth/me`).
+- **İstemci Durum Yönetimi (Zustand)**:
+  - `useAuthStore` ile LocalStorage senkronizasyonu (`vantor-auth-storage`).
+- **Tip Güvenli API Client ve Interceptor**:
+  - `apiClient` ([client.ts](file:///Users/zafergok/Documents/github/ZAFER/vantor/src/lib/api/client.ts)) üzerinden istek (Bearer token injection), yanıt (HTTP 401 auto logout) ve hata interceptor'ları.
+- **TanStack React Query & Servis Seviyesi Önbellekleme**:
+  - `QueryProvider` ile varsayılan önbellek sıfırlanmış (`staleTime: 0`), önbellekleme kararları servis katmanına (`CACHE_STRATEGIES`) bırakılmıştır.
+- **Arayüz ve Tema Sistemi**:
+  - Dark-mode-first Brutalist renk paleti (`vantor-blue`, `void-black`, `obsidian`, `gunmetal`, `titanium`, `ash`).
+  - 40 adet erişilebilir atomik `src/components/core` bileşeni.
+  - React Hook Form & Zod uyumlu `src/components/forms` yapısı.
+  - Hazır Türkçe (TR) ve İngilizce (EN) i18n altyapısı.
 
-### Varsayılan Yüzeyler
+---
 
-Vantor, üç ana yüzeyi varsayılan olarak tanır:
+## 🛠️ Teknoloji Yığını (Tech Stack)
 
-- **Public alan**: Landing page ve login sayfası gibi herkese açık ekranlar.
-- **Auth alanı**: Giriş yapmış kullanıcılar için dashboard, workspace ve
-  ayarlar gibi korumalı uygulama ekranları.
-- **Admin alanı**: Admin login, genel bakış, kullanıcılar ve ayarlar gibi
-  yönetim ekranları.
+- **Framework**: Next.js 16 (App Router & Turbopack), React 19, TypeScript
+- **State Management**: Zustand (v5)
+- **Data Fetching & Cache**: TanStack React Query (v5) & Devtools
+- **Styling & Theme**: Tailwind CSS, `next-themes`, Framer Motion (View Transitions)
+- **UI Primitives**: Radix UI (16+ primitive), Lucide Icons
+- **Form & Validation**: React Hook Form, `@hookform/resolvers`, Zod
 
-Bu ayrım, ürün büyürken pazarlama/public sayfalarını, kullanıcıya dönük ürünü
-ve iç yönetim panelini net şekilde ayrı tutar.
+---
 
-### Bu Proje ile Neler Yapılabilir?
-
-Vantor aşağıdaki ürün tipleri için hızlı bir temel olabilir:
-
-- **SaaS uygulamaları**: Üye girişi, dashboard, ayarlar ve admin yönetimi olan
-  abonelik tabanlı ürünler.
-- **CRM sistemleri veya müşteri portalları**: Müşteri, firma, teklif, destek
-  kaydı veya takip ekranları olan ürünler.
-- **Operasyon panelleri**: Görev, iş akışı, stok, ekip, talep veya onay
-  süreçleri için internal araçlar.
-- **Admin dashboard'ları**: Kullanıcı, rol, sistem durumu ve temel metriklerin
-  yönetildiği paneller.
-- **MVP prototipleri**: Domaini tam netleşmeden önce profesyonel bir kabuğa
-  ihtiyaç duyan ürün fikirleri.
-- **Kurumsal uygulama temelleri**: Departmanlara veya iş süreçlerine göre
-  genişletilebilen çok ekranlı web uygulamaları.
-
-### Bilerek Eklenmeyenler
-
-Vantor bir template olduğu için ürüne özel iş mantığını size bırakır. Aşağıdaki
-konular bilinçli olarak dahil edilmemiştir:
-
-- Firebase veya başka bir authentication provider entegrasyonu
-- Gerçek kullanıcı, rol ve yetki veri modelleri
-- Domain spesifik API route'ları
-- AI, kanban, proje yönetimi, waitlist veya account ürünleri için hazır iş
-  akışları
-- Ürüne özel store, servis ve veri katmanları
-- Monitoring, analytics veya production authentication politikaları
-
-Bu tercih, projenin farklı domainlere daha kolay uyarlanmasını sağlar.
-
-### Teknoloji Yığını
-
-- Next.js 16
-- React 19
-- TypeScript
-- Tailwind CSS
-- Radix UI primitives
-- Lucide React ikonları
-- React Hook Form
-- Zod
-- Framer Motion
-- `next-themes`
-
-### Proje Yapısı
+## 📁 Proje Dizin Yapısı (Project Structure)
 
 ```text
-src/app
-  (public)        Herkese açık sayfalar
-  (auth)          Korumalı kullanıcı uygulama alanı
-  (admin)         Admin login ve admin shell
-
-src/features/routes
-  public          Public ekran modülleri
-  auth            Kullanıcı ekran modülleri
-  admin           Admin ekran modülleri
-
-src/components/core
-  Temel UI bileşenleri
-
-src/components/forms
-  Form altyapısı ve alan bileşenleri
-
-src/lib
-  Metadata, locale, auth session ve yardımcı fonksiyonlar
+src/
+├── app/                      # Next.js App Router sayfaları & API Endpoint'leri
+│   ├── (public)/             # Public sayfalar (Landing, Login)
+│   ├── (auth)/               # Korumalı kullanıcı sayfaları (Home, Workspace, Settings)
+│   ├── (admin)/              # Yönetim paneli sayfaları (Admin Login, Overview, Users, Settings)
+│   └── api/                  # Backend REST API endpoint'leri (/api/auth/*)
+│
+├── features/routes/          # Ekran modülleri ve diller (i18n)
+│   ├── _shared/layouts/      # Shell çerçeveleri (PublicShell, AuthShell, AdminShell)
+│   ├── public/               # Public ekranlar ve bileşenleri
+│   ├── auth/                 # Kullanıcı ekranları ve bileşenleri
+│   └── admin/                # Admin ekranları ve bileşenleri
+│
+├── components/               # UI Bileşen Katmanı
+│   ├── core/                 # 40 adet atomik arayüz bileşeni (button, card, badge, dialog vb.)
+│   ├── forms/                # RHF + Zod destekli form alanları (form, text-field, select vb.)
+│   ├── layout/               # Global kontroller (LanguageSwitcher, ThemeToggle)
+│   └── providers/            # ClientLocaleProvider, LocaleHtmlSync
+│
+├── stores/                   # Zustand Durum Depoları
+│   └── use-auth-store.ts     # Oturum ve kullanıcı state deposu (Persisted)
+│
+├── lib/                      # Kütüphane ve Yardımcı Modüller
+│   ├── api/                  # apiClient & HTTP Interceptor altyapısı (client, types)
+│   ├── auth/                 # JWT (jwt.ts) & HTTP-Only Session (session.ts)
+│   ├── i18n/                 # Server ve Request locale yardımcıları
+│   └── metadata/             # Site ve sayfa SEO metadataları
+│
+├── services/                 # Servis Katmanı ve Önbellek Stratejileri
+│   ├── auth-service.ts       # Kimlik doğrulama servis istekleri
+│   └── example-service.ts    # Servis bazlı önbellek strateji örnekleri (CACHE_STRATEGIES)
+│
+├── hooks/                    # Custom React Query ve Uygulama Hook'ları
+│   ├── use-api-query.ts      # Tip güvenli React Query sarmalayıcıları
+│   └── use-auth-hooks.ts     # useLoginMutation, useLogoutMutation, useCurrentUserQuery
+│
+├── providers/                # Global Context Provider'lar
+│   ├── query-provider.tsx    # TanStack React QueryProvider
+│   └── theme-provider.tsx    # next-themes ThemeProvider
+│
+└── proxy.ts                  # Next.js 16 Native Proxy Middleware & Security Headers
 ```
 
-### Kurulum
+---
+
+## 🎓 Eğitici Mimari Rehber (Educational Guide)
+
+### 1. API Client ve Interceptor Kullanımı
+
+Uygulamada tüm HTTP istekleri `apiClient` üzerinden gerçekleştirilir. İstekler giden başlıkları (Authorization Bearer Token), gelen yanıtları (HTTP 401 kontrolü) ve hataları otomatik olarak işler.
+
+```typescript
+import { apiClient } from '@/lib/api';
+
+// GET İsteği
+const data = await apiClient.get<UserProfile>('/api/users/me');
+
+// POST İsteği
+const response = await apiClient.post<LoginResponse>('/api/auth/login', {
+  email: 'user@vantor.com',
+  password: 'password123',
+});
+```
+
+---
+
+### 2. Servis ve Önbellekleme Katmanı (`CACHE_STRATEGIES`)
+
+Projede global `staleTime: 0` olarak ayarlanmıştır. Her servis endpoint'i kendi önbellekleme ihtiyacına göre `CACHE_STRATEGIES` nesnesini kullanır:
+
+```typescript
+import { useApiQuery } from '@/hooks/use-api-query';
+
+export const CACHE_STRATEGIES = {
+  REALTIME: { staleTime: 0, gcTime: 0 }, // Her zaman taze veri
+  SHORT: { staleTime: 1000 * 30, gcTime: 1000 * 60 * 5 }, // 30 saniye önbellek
+  MEDIUM: { staleTime: 1000 * 60 * 5, gcTime: 1000 * 60 * 15 }, // 5 dakika önbellek
+  LONG: { staleTime: 1000 * 60 * 60, gcTime: 1000 * 60 * 60 * 24 }, // 1 saat önbellek (statik veri)
+} as const;
+
+// Örnek Servis Hook'u:
+export function useCountryLookupsQuery() {
+  return useApiQuery<string[]>(
+    ['lookups', 'countries'],
+    '/api/lookups/countries',
+    {},
+    { ...CACHE_STRATEGIES.LONG }, // Statik liste için 1 saat önbellek
+  );
+}
+```
+
+---
+
+### 3. Zustand ve React Query Auth Hook'ları
+
+Kullanıcı giriş/çıkış durumları React Query Mutation'ları üzerinden yönetilir ve otomatik olarak hem Zustand `useAuthStore` state'ini hem de HTTP-Only sunucu çerezlerini senkronize eder:
+
+```typescript
+'use client';
+
+import { useLoginMutation, useLogoutMutation, useCurrentUserQuery } from '@/hooks/use-auth-hooks';
+
+export function LoginFormComponent() {
+  const loginMutation = useLoginMutation();
+  const logoutMutation = useLogoutMutation();
+  const { data: userData, isLoading } = useCurrentUserQuery();
+
+  const handleLogin = async () => {
+    await loginMutation.mutateAsync({
+      email: 'admin@vantor.com',
+      password: 'password123',
+      isAdmin: true,
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleLogin} disabled={loginMutation.isPending}>
+        Giriş Yap
+      </button>
+      <button onClick={() => logoutMutation.mutate()}>Çıkış Yap</button>
+    </div>
+  );
+}
+```
+
+---
+
+### 4. Güvenlik ve Session Yapılandırması
+
+Next.js 16 Native `Proxy Middleware` ([proxy.ts](file:///Users/zafergok/Documents/github/ZAFER/vantor/src/proxy.ts)), tüm isteklere güvenlik başlıklarını otomatik enjekte eder ve oturum kontrollerini yapar:
+
+- **Giren İsteğin Korunması**: Yetkisiz kullanıcılar korumalı `/home` veya `/admin` rotalarına girmek istediğinde otomatik yönlendirilir.
+- **HTTP Security Headers**:
+  - `X-Frame-Options: DENY` (Clickjacking önleme)
+  - `X-Content-Type-Options: nosniff` (MIME sniffing önleme)
+  - `Referrer-Policy: strict-origin-when-cross-origin`
+  - `Permissions-Policy: camera=(), microphone=(), geolocation=()`
+  - `X-XSS-Protection: 1; mode=block`
+
+---
+
+## ⚡ Kurulum ve Komutlar
+
+### 1. Kurulum
 
 ```bash
+# Bağımlılıkları yükleyin
 npm install
+
+# Geliştirme sunucusunu başlatın
 npm run dev
 ```
 
 Uygulama varsayılan olarak `http://localhost:3000` adresinde çalışır.
 
-### Kullanılabilir Komutlar
+### 2. Kullanılabilir Komutlar
 
 ```bash
-npm run dev             # Geliştirme sunucusu
-npm run build           # Production build
-npm run start           # Production sunucusu
-npm run type-check      # TypeScript kontrolü
-npm run metadata:check  # Route metadata kontrolü
+npm run dev             # Turbopack destekli geliştirme sunucusu
+npm run build           # Üretim (Production) derlemesi
+npm run start           # Derlenmiş üretim sunucusunu başlatma
+npm run type-check      # TypeScript statik tip denetimi (tsc --noEmit)
+npm run metadata:check  # Rota metadatalarının doğruluk kontrolü
+npm run lint            # ESLint kod kalitesi denetimi
 ```
 
-### Geliştirmeye Nereden Başlanır?
+---
 
-1. `src/features/routes` altında ilgili public, auth veya admin ekranını
-   ürününüze göre güncelleyin.
-2. Yeni ekranları tutarlı şekilde oluşturmak için `src/components/core`
-   bileşenlerini kullanın.
-3. Kendi domaininiz için gerçek authentication provider, veri kaynağı ve API
-   route'larını ekleyin.
-4. `src/lib/metadata/site-metadata.ts` içindeki site ve sayfa metadatalarını
-   markanıza göre güncelleyin.
-5. `src/features/routes/**/i18n` içindeki Türkçe ve İngilizce metinleri ürün
-   dilinize uyarlayın.
+## 📄 Lisans
 
-### Lisans
-
-Bu repo özel bir uygulama template'i olarak hazırlanmıştır. Kullanım ve dağıtım
-koşulları proje sahibinin belirlediği lisans politikasına göre
-netleştirilmelidir.
+Bu proje [MIT Lisansı](file:///Users/zafergok/Documents/github/ZAFER/vantor/LICENSE) altında lisanslanmıştır. Dilediğiniz gibi ticari veya kişisel projelerinizde kullanabilir, değiştirebilir ve dağıtabilirsiniz.
