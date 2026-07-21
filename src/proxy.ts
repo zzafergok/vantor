@@ -9,6 +9,18 @@ const ADMIN_ENTRY = '/admin';
 const ADMIN_LOGIN = '/admin/login';
 const LOCALE_HEADER = 'X-NEXT-INTL-LOCALE';
 
+function applySecurityHeaders(response: NextResponse): NextResponse {
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.headers.set(
+    'Permissions-Policy',
+    'camera=(), microphone=(), geolocation=()',
+  );
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+  return response;
+}
+
 function withLocaleHeader(request: NextRequest): NextResponse {
   const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
   const locale =
@@ -20,7 +32,13 @@ function withLocaleHeader(request: NextRequest): NextResponse {
   const headers = new Headers(request.headers);
   headers.set(LOCALE_HEADER, locale);
 
-  return NextResponse.next({ request: { headers } });
+  const response = NextResponse.next({ request: { headers } });
+  return applySecurityHeaders(response);
+}
+
+function redirectWithSecurity(url: URL): NextResponse {
+  const response = NextResponse.redirect(url);
+  return applySecurityHeaders(response);
 }
 
 function isStaticAsset(pathname: string): boolean {
@@ -38,7 +56,8 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (isStaticAsset(pathname) || pathname.startsWith('/api/')) {
-    return NextResponse.next();
+    const response = NextResponse.next();
+    return applySecurityHeaders(response);
   }
 
   const hasSession = hasUserSession(request);
@@ -50,27 +69,27 @@ export function proxy(request: NextRequest) {
 
   if (isAdminLogin) {
     if (hasAdmin) {
-      return NextResponse.redirect(new URL(ADMIN_ENTRY, request.url));
+      return redirectWithSecurity(new URL(ADMIN_ENTRY, request.url));
     }
     return withLocaleHeader(request);
   }
 
   if (isAdminRoute) {
     if (!hasAdmin) {
-      return NextResponse.redirect(new URL(ADMIN_LOGIN, request.url));
+      return redirectWithSecurity(new URL(ADMIN_LOGIN, request.url));
     }
     return withLocaleHeader(request);
   }
 
   if (isPublicRoute) {
     if (hasSession) {
-      return NextResponse.redirect(new URL(AUTH_ENTRY, request.url));
+      return redirectWithSecurity(new URL(AUTH_ENTRY, request.url));
     }
     return withLocaleHeader(request);
   }
 
   if (!hasSession) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return redirectWithSecurity(new URL('/', request.url));
   }
 
   return withLocaleHeader(request);
