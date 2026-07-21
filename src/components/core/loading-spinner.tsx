@@ -138,13 +138,12 @@ const LoadingDots = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
             <div
               key={index}
               className={cn(
-                'transform-gpu rounded-full',
+                'transform-gpu rounded-full drop-shadow-sm',
                 dotSizeMap[safeSize],
                 colorMap[safeVariant],
               )}
               style={{
                 animation: `modernBounce 1.4s ease-in-out ${index * 0.2}s infinite`,
-                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
               }}
             />
           ))}

@@ -40,8 +40,8 @@ const variantStyles: Record<BadgeVariant, React.CSSProperties> = {
     borderWidth: '0',
   },
   warning: {
-    backgroundColor: 'rgb(251 146 60)', // orange-400
-    color: 'rgb(255 255 255)', // white
+    backgroundColor: 'hsl(var(--warning, 38 92% 50%))',
+    color: 'hsl(var(--primary-foreground))',
     borderWidth: '0',
   },
   outline: {
