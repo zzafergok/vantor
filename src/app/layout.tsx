@@ -6,6 +6,7 @@ import { getCurrentLocale } from '@/lib/i18n/server-locale';
 import { buildRootMetadata } from '@/lib/metadata/site-metadata';
 import { ClientLocaleProvider } from '@/components/providers/client-locale-provider';
 import { LocaleHtmlSync } from '@/components/providers/locale-html-sync';
+import { QueryProvider } from '@/providers/query-provider';
 import { ThemeProvider } from '@/providers/theme-provider';
 
 const inter = Inter({
@@ -36,8 +37,10 @@ export default async function RootLayout({
         <ClientLocaleProvider initialLocale={locale}>
           <LocaleHtmlSync />
           <ThemeProvider>
-            {children}
-            <Toaster />
+            <QueryProvider>
+              {children}
+              <Toaster />
+            </QueryProvider>
           </ThemeProvider>
         </ClientLocaleProvider>
       </body>
