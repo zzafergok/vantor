@@ -43,7 +43,7 @@ export function LanguageSwitcher() {
           className={cn(
             'flex h-full min-w-8 items-center justify-center px-2 font-mono text-[10px] font-bold uppercase tracking-widest transition-all',
             item === locale
-              ? 'pointer-events-none bg-arcly-blue text-white'
+              ? 'pointer-events-none bg-vantor-blue text-white'
               : 'text-ash hover:bg-gunmetal/30 hover:text-titanium',
           )}
         >

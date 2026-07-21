@@ -543,13 +543,13 @@ export function DatePicker({
           className={cn(
             'relative h-10 w-10 rounded-sm text-sm transition-colors',
             'hover:bg-gunmetal/20',
-            'focus:outline-none focus:ring-1 focus:ring-inset focus:ring-arcly-blue/50',
+            'focus:outline-none focus:ring-1 focus:ring-inset focus:ring-vantor-blue/50',
             !isCurrentMonth && 'text-ash/30',
             isCurrentMonth && 'text-titanium',
             isTodayDate &&
               !isSelected &&
-              'border border-arcly-blue/20 bg-arcly-blue/10 text-arcly-blue',
-            isSelected && 'bg-arcly-blue text-white',
+              'border border-vantor-blue/20 bg-vantor-blue/10 text-vantor-blue',
+            isSelected && 'bg-vantor-blue text-white',
             isRangeStartDate && 'rounded-r-none',
             isRangeEndDate && 'rounded-l-none',
             isSelected &&
@@ -562,7 +562,7 @@ export function DatePicker({
         >
           {format(day, 'd')}
           {isTodayDate && !isSelected && (
-            <div className="absolute bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 transform rounded-sm bg-arcly-blue" />
+            <div className="absolute bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 transform rounded-sm bg-vantor-blue" />
           )}
         </button>,
       );

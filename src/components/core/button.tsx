@@ -8,17 +8,17 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-sm text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-arcly-blue/50 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-sm text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-vantor-blue/50 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: 'bg-arcly-blue text-white hover:bg-arcly-blue/90',
+        default: 'bg-vantor-blue text-white hover:bg-vantor-blue/90',
         destructive: 'bg-alert-red text-white hover:bg-alert-red/90',
         outline:
           'border border-gunmetal bg-transparent text-titanium hover:bg-gunmetal/20 hover:border-gunmetal',
         secondary: 'bg-gunmetal text-titanium hover:bg-gunmetal/80',
         ghost: 'text-titanium hover:bg-gunmetal/20',
-        link: 'text-arcly-blue underline-offset-4 hover:underline',
+        link: 'text-vantor-blue underline-offset-4 hover:underline',
       },
       size: {
         default: 'h-10 px-4 py-2',

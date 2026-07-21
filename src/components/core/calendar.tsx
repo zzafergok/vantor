@@ -159,8 +159,8 @@ export function Calendar({
                 'hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-white/5 dark:hover:text-ash',
                 'focus:outline-none',
                 selected &&
-                  'bg-arcly-blue text-white hover:bg-arcly-blue/90 hover:text-white',
-                today && !selected && 'border border-arcly-blue',
+                  'bg-vantor-blue text-white hover:bg-vantor-blue/90 hover:text-white',
+                today && !selected && 'border border-vantor-blue',
                 isDisabled &&
                   'cursor-not-allowed opacity-50 hover:bg-transparent',
               )}

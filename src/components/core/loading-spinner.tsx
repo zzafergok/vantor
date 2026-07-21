@@ -17,10 +17,10 @@ const spinnerVariants = cva('', {
       '2xl': 'h-16 w-16',
     },
     variant: {
-      default: 'text-arcly-blue',
+      default: 'text-vantor-blue',
       secondary: 'text-ash',
       white: 'text-white',
-      accent: 'text-arcly-blue',
+      accent: 'text-vantor-blue',
     },
   },
   defaultVariants: {
@@ -118,10 +118,10 @@ const LoadingDots = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
     };
 
     const colorMap = {
-      default: 'bg-arcly-blue',
+      default: 'bg-vantor-blue',
       secondary: 'bg-gunmetal',
       white: 'bg-white shadow-lg',
-      accent: 'bg-arcly-blue',
+      accent: 'bg-vantor-blue',
     };
 
     const safeSize = size || 'md';
@@ -169,12 +169,12 @@ const LoadingPulse = React.forwardRef<HTMLDivElement, LoadingSpinnerProps>(
 
     const pulseColorMap = {
       default:
-        'bg-gradient-to-br from-arcly-blue/40 via-arcly-blue/60 to-arcly-blue/80',
+        'bg-gradient-to-br from-vantor-blue/40 via-vantor-blue/60 to-vantor-blue/80',
       secondary:
         'bg-gradient-to-br from-gunmetal/40 via-gunmetal/60 to-gunmetal/80',
       white: 'bg-gradient-to-br from-white via-titanium/80 to-titanium',
       accent:
-        'bg-gradient-to-br from-arcly-blue/40 via-arcly-blue/60 to-arcly-blue/80',
+        'bg-gradient-to-br from-vantor-blue/40 via-vantor-blue/60 to-vantor-blue/80',
     };
 
     const safeSize = size || 'md';

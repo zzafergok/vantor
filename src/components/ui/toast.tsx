@@ -72,7 +72,7 @@ const ToastIcon = ({ type }: { type?: ToastType }) => {
     case 'loading':
       return <Loader2 className="h-4 w-4 animate-spin text-ash" />;
     default:
-      return <Info className="h-4 w-4 text-arcly-blue" />;
+      return <Info className="h-4 w-4 text-vantor-blue" />;
   }
 };
 
@@ -85,7 +85,7 @@ const getProgressColor = (type?: ToastType): string => {
     case 'warning':
       return 'bg-amber-500';
     default:
-      return 'bg-arcly-blue';
+      return 'bg-vantor-blue';
   }
 };
 

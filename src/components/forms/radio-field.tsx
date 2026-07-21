@@ -47,7 +47,7 @@ export function RadioField({
   return (
     <div className={cn('space-y-1.5 sm:space-y-2', className)}>
       <Label className="text-xs sm:text-sm">
-        {label} {required && <span className="text-arcly-blue">*</span>}
+        {label} {required && <span className="text-vantor-blue">*</span>}
       </Label>
       {description && !error && (
         <p className="text-[10px] text-ash/60 sm:text-xs">{description}</p>

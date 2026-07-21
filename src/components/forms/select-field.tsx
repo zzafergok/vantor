@@ -60,7 +60,7 @@ export function SelectField({
         htmlFor={name}
         className="font-mono text-[10px] uppercase tracking-wider text-ash"
       >
-        {label} {required && <span className="text-arcly-blue">*</span>}
+        {label} {required && <span className="text-vantor-blue">*</span>}
       </Label>
       <Controller
         name={name}

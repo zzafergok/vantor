@@ -30,7 +30,7 @@ export async function AdminUsersScreen() {
               <span className="font-semibold text-titanium">{user.name}</span>
               <span className="text-ash">{user.role}</span>
               <Badge
-                className="w-fit rounded-none border-arcly-blue/30 bg-arcly-blue/10 text-arcly-blue"
+                className="w-fit rounded-none border-vantor-blue/30 bg-vantor-blue/10 text-vantor-blue"
                 variant="none"
               >
                 {user.status}

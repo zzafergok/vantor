@@ -110,19 +110,19 @@
     --ash-900: 240 2.3% 12.9%;
     --ash-950: 240 2.3% 6.4%;
 
-    /* arcly-blue (Base: #5D5DFF) — slightly darker in light mode for contrast */
-    --arcly-blue-50: 240 100% 97%;
-    --arcly-blue-100: 240 100% 94%;
-    --arcly-blue-200: 240 100% 86%;
-    --arcly-blue-300: 240 100% 77%;
-    --arcly-blue-400: 240 100% 68%;
-    --arcly-blue-500: 240 100% 68.2%;
-    --arcly-blue-600: 240 100% 58%;
-    --arcly-blue-700: 240 100% 47.8%;
-    --arcly-blue-800: 240 100% 34.1%;
-    --arcly-blue-900: 240 100% 20.5%;
-    --arcly-blue-950: 240 100% 10.2%;
-    --arcly-blue: 240 100% 58%;
+    /* vantor-blue (Base: #5D5DFF) — slightly darker in light mode for contrast */
+    --vantor-blue-50: 240 100% 97%;
+    --vantor-blue-100: 240 100% 94%;
+    --vantor-blue-200: 240 100% 86%;
+    --vantor-blue-300: 240 100% 77%;
+    --vantor-blue-400: 240 100% 68%;
+    --vantor-blue-500: 240 100% 68.2%;
+    --vantor-blue-600: 240 100% 58%;
+    --vantor-blue-700: 240 100% 47.8%;
+    --vantor-blue-800: 240 100% 34.1%;
+    --vantor-blue-900: 240 100% 20.5%;
+    --vantor-blue-950: 240 100% 10.2%;
+    --vantor-blue: 240 100% 58%;
 
     /* signal-green (Base: #27AE60) — slightly darker in light mode */
     --signal-green-50: 145 63.4% 97%;
@@ -241,7 +241,7 @@
     --ash: 240 2.3% 42.9%;
 
     /* ── Dark Mode: Brand Color Overrides ── */
-    --arcly-blue: 240 100% 68.2%;
+    --vantor-blue: 240 100% 68.2%;
     --signal-green: 145 63.4% 41.8%;
     --alert-red: 0 78.7% 63.1%;
   }
@@ -252,7 +252,7 @@
 
   html,
   body {
-    @apply bg-background text-foreground font-sans antialiased selection:bg-arcly-blue/20;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-vantor-blue/20;
   }
 }
 
@@ -297,9 +297,9 @@ input[type='number'] {
   background-size: 4rem 4rem;
 }
 
-/* FAQ assistant radial glow — adapts via --arcly-blue */
-.arcly-glow-radial {
-  background: radial-gradient(circle at center, hsl(var(--arcly-blue) / 0.15) 0%, transparent 70%);
+/* FAQ assistant radial glow — adapts via --vantor-blue */
+.vantor-glow-radial {
+  background: radial-gradient(circle at center, hsl(var(--vantor-blue) / 0.15) 0%, transparent 70%);
 }
 
 /* Typography Overrides */

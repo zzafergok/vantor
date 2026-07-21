@@ -188,7 +188,7 @@ export function MonthYearPicker({
                   key={index}
                   variant="ghost"
                   size="sm"
-                  className="h-8 w-full justify-start px-2 text-xs font-normal hover:bg-arcly-blue/10"
+                  className="h-8 w-full justify-start px-2 text-xs font-normal hover:bg-vantor-blue/10"
                   onClick={() => handleQuickDateSelect(quickDate)}
                 >
                   {quickDate.label}
@@ -240,10 +240,10 @@ export function MonthYearPicker({
                       'relative flex h-10 items-center justify-center px-3 text-sm font-normal',
                       'text-titanium hover:bg-gunmetal/20',
                       selected &&
-                        'bg-arcly-blue text-white hover:bg-arcly-blue/90',
+                        'bg-vantor-blue text-white hover:bg-vantor-blue/90',
                       current &&
                         !selected &&
-                        'border border-arcly-blue/20 bg-arcly-blue/10 text-arcly-blue',
+                        'border border-vantor-blue/20 bg-vantor-blue/10 text-vantor-blue',
                       disabled && 'cursor-not-allowed opacity-50',
                     )}
                     onClick={() => !disabled && handleMonthSelect(index)}
@@ -251,7 +251,7 @@ export function MonthYearPicker({
                   >
                     {month}
                     {current && !selected && (
-                      <div className="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 transform rounded-full bg-arcly-blue" />
+                      <div className="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 transform rounded-full bg-vantor-blue" />
                     )}
                   </Button>
                 );

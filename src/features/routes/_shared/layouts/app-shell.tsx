@@ -63,7 +63,7 @@ export function BrandMark({
 }) {
   return (
     <Link href="/" className="flex items-center gap-3">
-      <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-sm border border-arcly-blue/40 bg-void-black">
+      <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-sm border border-vantor-blue/40 bg-void-black">
         <Image
           src={siteMetadata.assets.logo}
           alt={`${copy.title} brand mark`}

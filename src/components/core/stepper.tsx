@@ -63,7 +63,7 @@ export function StepperItem({
           className={cn(
             'flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-medium transition-colors',
             {
-              'border-arcly-blue bg-arcly-blue text-white':
+              'border-vantor-blue bg-vantor-blue text-white':
                 isActive || isCompleted,
               'border-gunmetal text-ash': !isActive && !isCompleted,
             },
@@ -74,7 +74,7 @@ export function StepperItem({
         <div className="mt-2 text-center">
           <div
             className={cn('text-xs font-bold uppercase tracking-wider', {
-              'text-arcly-blue': isActive,
+              'text-vantor-blue': isActive,
               'text-titanium': isCompleted,
               'text-ash': !isActive && !isCompleted,
             })}
@@ -96,7 +96,7 @@ export function StepperItem({
       {!isLast && (
         <div
           className={cn('mx-4 h-[2px] w-24 transition-colors', {
-            'bg-arcly-blue': isCompleted,
+            'bg-vantor-blue': isCompleted,
             'bg-gunmetal/30': !isCompleted,
           })}
         />

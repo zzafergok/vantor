@@ -67,7 +67,7 @@ export function StandardCard({
         onClick={onClick}
         className={cn(
           'group cursor-pointer rounded-sm border transition-all duration-300',
-          'border-gunmetal bg-obsidian hover:border-arcly-blue/50 hover:bg-gunmetal/20 hover:shadow-lg',
+          'border-gunmetal bg-obsidian hover:border-vantor-blue/50 hover:bg-gunmetal/20 hover:shadow-lg',
           'flex h-full flex-col gap-3 p-4',
           className,
         )}
@@ -117,7 +117,7 @@ export function StandardCard({
                     action.variant === 'destructive' ||
                       action.variant === 'rose'
                       ? 'hover:border-alert-red/30 hover:bg-alert-red/10 hover:text-alert-red'
-                      : 'hover:border-arcly-blue/30 hover:bg-arcly-blue/10 hover:text-arcly-blue',
+                      : 'hover:border-vantor-blue/30 hover:bg-vantor-blue/10 hover:text-vantor-blue',
                   )}
                   title={action.label}
                 >
@@ -129,7 +129,7 @@ export function StandardCard({
         </div>
 
         {/* Title */}
-        <h3 className="line-clamp-2 text-sm font-bold uppercase leading-snug tracking-tight text-titanium transition-colors group-hover:text-arcly-blue">
+        <h3 className="line-clamp-2 text-sm font-bold uppercase leading-snug tracking-tight text-titanium transition-colors group-hover:text-vantor-blue">
           {title}
         </h3>
 
@@ -167,7 +167,7 @@ export function StandardCard({
             </div>
             <div className="h-1 w-full overflow-hidden rounded-sm bg-gunmetal/60">
               <div
-                className="h-full bg-gradient-to-r from-arcly-blue to-signal-green transition-all duration-500"
+                className="h-full bg-gradient-to-r from-vantor-blue to-signal-green transition-all duration-500"
                 style={{ width: `${progress.percent}%` }}
               />
             </div>
@@ -183,7 +183,7 @@ export function StandardCard({
       onClick={onClick}
       className={cn(
         'group relative cursor-pointer rounded-sm border transition-all duration-300',
-        'border-gunmetal bg-obsidian hover:border-arcly-blue/50 hover:bg-gunmetal/20 hover:shadow-lg',
+        'border-gunmetal bg-obsidian hover:border-vantor-blue/50 hover:bg-gunmetal/20 hover:shadow-lg',
         'flex w-full flex-col gap-4 p-5 md:flex-row md:items-start md:gap-8 md:p-6',
         className,
       )}
@@ -192,7 +192,7 @@ export function StandardCard({
       <div className="min-w-0 flex-1 space-y-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex min-w-0 items-center gap-3">
-            <h3 className="line-clamp-1 text-sm font-bold uppercase tracking-tight text-titanium transition-colors group-hover:text-arcly-blue">
+            <h3 className="line-clamp-1 text-sm font-bold uppercase tracking-tight text-titanium transition-colors group-hover:text-vantor-blue">
               {title}
             </h3>
             {status && (
@@ -248,7 +248,7 @@ export function StandardCard({
           <div className="mt-5 space-y-1.5">
             <div className="h-1.5 w-full max-w-none overflow-hidden rounded-sm bg-gunmetal md:max-w-md lg:max-w-lg">
               <div
-                className="h-full bg-gradient-to-r from-arcly-blue to-signal-green transition-all duration-500"
+                className="h-full bg-gradient-to-r from-vantor-blue to-signal-green transition-all duration-500"
                 style={{ width: `${progress.percent}%` }}
               />
             </div>
@@ -272,7 +272,7 @@ export function StandardCard({
                 'h-7 w-7 rounded-none border border-gunmetal/30 bg-gunmetal/80 text-ash md:h-8 md:w-8',
                 action.variant === 'destructive' || action.variant === 'rose'
                   ? 'hover:bg-alert-red/20 hover:text-alert-red'
-                  : 'hover:bg-arcly-blue/20 hover:text-arcly-blue',
+                  : 'hover:bg-vantor-blue/20 hover:text-vantor-blue',
               )}
               title={action.label}
             >

@@ -25,7 +25,7 @@ export async function AuthHomeScreen() {
     <section className="space-y-8 p-5 md:p-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <Badge className="rounded-none border-arcly-blue/30 bg-arcly-blue/10 text-arcly-blue">
+          <Badge className="rounded-none border-vantor-blue/30 bg-vantor-blue/10 text-vantor-blue">
             {copy.badge}
           </Badge>
           <h1 className="mt-4 text-4xl font-black uppercase tracking-tight">
@@ -48,7 +48,7 @@ export async function AuthHomeScreen() {
               <CardTitle className="text-xs uppercase tracking-widest text-ash">
                 {metric.label}
               </CardTitle>
-              <metric.icon className="h-4 w-4 text-arcly-blue" />
+              <metric.icon className="h-4 w-4 text-vantor-blue" />
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-black uppercase tracking-tight">

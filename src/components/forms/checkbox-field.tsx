@@ -57,7 +57,7 @@ export function CheckboxField({
               'cursor-pointer text-xs font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 sm:text-sm',
             )}
           >
-            {label} {required && <span className="text-arcly-blue">*</span>}
+            {label} {required && <span className="text-vantor-blue">*</span>}
           </Label>
           {description && !error && (
             <p className="text-[10px] text-ash/60 sm:text-xs">{description}</p>
